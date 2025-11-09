@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Montair LC - Scientific Portal</title>
+    <style>
+        :root {
+            /* Red/Yellow Product Theme */
+            --primary-color: #D92323; /* Strong Red */ [cite: 2]
+            --secondary-color: #FFB300; /* Warm Yellow/Gold */ [cite: 3]
+            --accent-color: #E65100; /* Deep Orange for accents */ [cite: 4]
+            
+            --text-color: #333; [cite: 5]
+            --text-on-dark: #ffffff; [cite: 5]
+            --bg-color: #f9f9f9; 
+            --white: #ffffff;
+            --grey: #eaeaea;
+            --success: #28a745;
+            --danger: #dc3545; [cite: 6]
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; [cite: 6]
+            margin: 0; [cite: 7]
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px; [cite: 8]
+            margin: 0 auto; [cite: 8]
+            padding: 20px;
+        }
+        /* Header & Nav */
+        header {
+            background-color: var(--white); [cite: 9]
+            border-bottom: 2px solid var(--grey); [cite: 9]
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center; [cite: 10]
+        }
+        header h1 {
+            color: var(--primary-color); [cite: 11]
+            font-size: 28px; [cite: 11]
+            margin: 0;
+            font-weight: 700;
+        }
+        nav {
+            display: flex; [cite: 12]
+            gap: 15px; [cite: 12]
+            flex-wrap: wrap;
+        }
+        nav a {
+            text-decoration: none; [cite: 13]
+            color: var(--primary-color); [cite: 13]
+            font-weight: 600;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: all 0.2s ease; [cite: 14]
+        }
+        nav a:hover, nav a.active {
+            background-color: var(--bg-color); [cite: 15]
+            color: var(--accent-color); [cite: 15]
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            color: var(--text-on-dark); [cite: 16]
+            padding: 50px 40px;
+            text-align: center;
+            border-radius: 12px;
+            margin-top: 20px; [cite: 17]
+        }
+        .hero h2 {
+            font-size: 38px; [cite: 18]
+            margin: 0 0 10px 0; [cite: 18]
+        }
+        .hero p {
+            font-size: 20px; [cite: 19]
+            opacity: 0.9; [cite: 19]
+        }
+
+        /* Section Styling */
+        .section {
+            background: var(--white); [cite: 20]
+            padding: 30px; [cite: 20]
+            margin-top: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05); [cite: 21]
+        }
+        .section h3 {
+            font-size: 28px; [cite: 22]
+            color: var(--primary-color); [cite: 22]
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+            margin-top: 0; [cite: 23]
+        }
+
+        /* Indication Grid Layout */
+        .indication-grid {
+            display: grid; [cite: 24]
+            grid-template-columns: 1fr 1fr; [cite: 24]
+            gap: 30px;
+            margin-top: 20px;
+            align-items: flex-start;
+        }
+        .indication-grid .text-content {
+            padding-right: 20px; [cite: 25]
+        }
+        .indication-grid .data-card {
+            background: var(--bg-color); [cite: 26]
+            border: 2px solid var(--secondary-color); [cite: 26]
+            border-radius: 10px;
+            padding: 25px;
+        }
+        .data-card h4 {
+            margin: 0 0 15px 0; [cite: 27]
+            color: var(--accent-color); [cite: 27]
+            font-size: 22px;
+        }
+        .data-card ul {
+            padding-left: 20px; [cite: 28]
+            list-style-type: '✓ '; [cite: 28]
+        }
+        .data-card ul li {
+            font-size: 16px; [cite: 29]
+            margin-bottom: 10px; [cite: 29]
+            padding-left: 10px;
+        }
+        
+        /* Citable Links */
+        a.citation-link {
+            text-decoration: none; [cite: 30]
+            color: var(--accent-color); [cite: 30]
+            font-weight: 600;
+        }
+        a.citation-link:hover {
+            text-decoration: underline; [cite: 31]
+        }
+
+        /* NEW Gamification */
+        .triage-grid {
+            display: grid; [cite: 32]
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); [cite: 32]
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .patient-card {
+            border: 1px solid var(--grey); [cite: 33]
+            border-radius: 8px; [cite: 33]
+            padding: 20px;
+            background: var(--bg-color);
+            display: flex;
+            flex-direction: column; [cite: 34]
+        }
+        .patient-card h4 {
+            margin: 0 0 15px 0; [cite: 35]
+            color: var(--primary-color); [cite: 35]
+            font-size: 20px;
+        }
+        .patient-card .scenario {
+            font-size: 15px; [cite: 36]
+            font-style: italic; [cite: 36]
+            margin: 0 0 15px 0;
+            flex-grow: 1; /* Makes cards equal height */
+        }
+        .patient-card .options-list {
+            list-style: none; [cite: 37]
+            padding: 0; [cite: 37]
+            margin: 0;
+        }
+        .patient-card .options-list li {
+            margin-bottom: 10px; [cite: 38]
+        }
+        .patient-card input[type="radio"] {
+            margin-right: 10px; [cite: 39]
+        }
+        .patient-card label {
+            font-size: 16px; [cite: 40]
+            cursor: pointer; [cite: 40]
+        }
+
+        .check-btn {
+            background-color: var(--accent-color); [cite: 41]
+            color: var(--text-on-dark); [cite: 41]
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.2s; [cite: 42]
+        }
+        .check-btn:hover {
+            background-color: var(--primary-color); [cite: 43]
+        }
+        #triage-rationale {
+            display: none; [cite: 44]
+            margin-top: 20px; [cite: 44]
+            padding: 20px;
+            border-radius: 8px;
+            background: #fff8e1; /* Light yellow */
+            border: 2px solid var(--secondary-color); [cite: 45]
+        }
+        #triage-rationale h5 {
+            color: var(--accent-color); [cite: 46]
+            margin: 0 0 10px 0; [cite: 46]
+            font-size: 18px;
+        }
+
+        /* Added for scientific images */
+        .section-image {
+            width: 100%;
+            display: block;
+            margin-top: 20px; 
+            margin-bottom: 10px;
+            border-radius: 8px;
+            border: 1px solid var(--grey);
+            background: #fdfdfd; 
+        }
+        
+        /* Responsive Media Queries */
+        @media (max-width: 900px) {
+            .indication-grid {
+                grid-template-columns: 1fr; [cite: 47]
+            }
+        }
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column; [cite: 48]
+                align-items: flex-start; [cite: 48]
+                gap: 15px;
+            }
+            nav {
+                width: 100%; [cite: 49]
+                justify-content: space-around; [cite: 49]
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="Screenshot 2025-11-09 105337.png" alt="Montair LC Logo" style="height: 40px; width: auto;">
+        
+        <nav>
+            <a href="#ar" class="active">Allergic Rhinitis</a>
+            <a href="#asthma">Asthma</a>
+            <a href="#overlap">AR-Asthma Overlap</a>
+            <a href="#gamification">Case Studies</a>
+        </nav>
+ 
+    </header>
+
+    <div class="container">
+
+        <section class="hero">
+            <h2>Comprehensive Control for Allergic Rhinitis & Asthma</h2>
+            <p>A dual-blockade FDC targeting the key inflammatory pathways for upper and lower airway disease.</p>
+        </section>
+
+        <section class="section" id="ar">
+            <h3>Indication 1: Allergic Rhinitis (AR)</h3>
+      
+            <div class="indication-grid">
+                <div class="text-content">
+                    <p>For AR patients, especially those with nasal congestion, monotherapy often falls short. [cite: 52]
+The FDC provides a dual blockade to control the full spectrum of symptoms.</p> [cite: 52]
+                    <p><strong>Levocetirizine (H1-Blocker):</strong> Targets histamine, the primary driver of acute symptoms like sneezing, rhinorrhea, and pruritus.</p>
+                    <p><strong>Montelukast (LTRA):</strong> Targets leukotrienes, the key mediators of late-phase inflammation responsible for persistent nasal congestion (<a class="citation-link" href="https://go.drugbank.com/drugs/DB00471" target="_blank">DrugBank</a>).</p>
+                    
+                    <img src="" alt="Diagram showing mast cell degranulation and the roles of histamine and leukotrienes in allergic rhinitis." class="section-image">
+
+                </div>
+                <div class="data-card">
+                    <h4>Clinical Proof: Superior Efficacy</h4>
+                    <ul>
+                        <li>A Phase III, randomized, double-blind trial found the Montelukast + Levocetirizine FDC showed a **statistically significant 
+greater improvement** in daytime nasal symptom scores vs. monotherapy (<a class="citation-link" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8343361/" target="_blank">Panchal S, et al. [cite: 54]
+2021</a>).</li> [cite: 54, 55]
+                        <li>A 2024 meta-analysis confirmed the FDC provided significantly better outcomes for **nasal obstruction** (congestion) compared to monotherapy (<a class="citation-link" href="https://pubmed.ncbi.nlm.nih.gov/37666275/" target="_blank">Eur Ann Allergy Clin Immunol. 2024</a>).</li>
+                        <li>In pediatric patients (6-14 yrs), the FDC was significantly more effective than montelukast alone at reducing **daytime nasal congestion (p=0.0341)** (<a class="citation-link" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7904771/" target="_blank">Kim CK, et al. [cite: 56]
+2021</a>).</li> [cite: 56]
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="asthma">
+            <h3>Indication 2: Asthma</h3>
+            <div class="indication-grid">
+       
+                 <div class="text-content">
+                    <p>The **Montelukast** component directly addresses the underlying pathophysiology of asthma as a Leukotriene Receptor Antagonist (LTRA).</p>
+                    <p>Cysteinyl leukotrienes (CysLTs) are potent pro-inflammatory mediators that cause bronchoconstriction, airway edema, and mucus secretion. [cite: 58]
+By blocking the CysLT1 receptor, Montelukast provides anti-inflammatory and bronchodilatory effects.</p> [cite: 58]
+                    <p>It is recommended in **GINA guidelines** as an adjunctive or alternative anti-inflammatory therapy for mild-to-moderate persistent asthma (<a class="citation-link" href="https://ginasthma.org/gina-reports/" target="_blank">GINA 2024</a>).</p>
+                    
+                    <img src="" alt="Illustration comparing a normal airway to an asthmatic airway, showing bronchoconstriction and inflammation." class="section-image">
+
+                </div>
+                <div class="data-card">
+                
+                     <h4>Clinical Proof: Symptom Control</h4> [cite: 59]
+                    <ul>
+                        <li>In a study of adult patients with mild-to-moderate persistent asthma, 4 weeks of add-on Montelukast treatment demonstrated significant clinical improvements:</li>
+                        <li>**83.3% improvement** in exercise tolerance</li>
+  
+                       <li>**80% improvement** in early morning wakening</li> [cite: 60]
+                        <li>(<a class="citation-link" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4070216/" target="_blank">Al-Rubaish A, 2014</a>)</li> [cite: 60]
+                    </ul>
+                </div>
+        
+             </div>
+        </section>
+
+        <section class="section" id="overlap">
+            <h3>Indication 3: The AR-Asthma Overlap (Unified Airway)</h3>
+            <div class="indication-grid">
+                <div class="text-content">
+                    
+                    <img src="" alt="Scientific illustration of the unified airway, connecting the nasal passages and the lungs." class="section-image">
+
+                    <p>This is where the FDC provides its most significant advantage. [cite: 62]
+Studies show that a high percentage of patients with asthma also suffer from AR. [cite: 62]
+Both conditions are manifestations of a "Unified Airway Disease."</p> [cite: 63]
+                    <p>The **ARIA guidelines** explicitly recommend treating AR in asthmatic patients to improve asthma control (<a class="citation-link" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7005182/" target="_blank">Bousquet J, et al. 2020</a>).</p>
+                    <p>Montair LC is uniquely positioned to treat both the upper (AR) and lower (Asthma) airway inflammation simultaneously.</p>
+               
+                 </div>
+                <div class="data-card">
+                    <h4>Clinical Proof: Managing Comorbidity</h4>
+                    <ul>
+                        <li>Leukotrienes are the common inflammatory pathway for *both* AR nasal congestion and asthmatic bronchoconstriction.</li>
+  
+                       <li>A retrospective study on patients with asthma and comorbid seasonal AR found that adding montelukast to their therapy **significantly improved long-term asthma control** and led to **substantial reductions in asthma-related resource use** (<a class="citation-link" href="https://pubmed.ncbi.nlm.nih.gov/30025514/" target="_blank">Price D, et al. [cite: 65, 66]
+2018</a>).</li> [cite: 65, 66]
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="gamification">
+            <h3>Clinical Case Challenge</h3>
+            <p>Based on the data, select the optimal therapeutic 
+strategy for each patient.</p> [cite: 67]
+            
+            <div class="triage-grid"> [cite: 80]
+                
+                <div class="patient-card">
+                    <h4>Case 1: The INS Non-Compliant Patient</h4>
+              
+                     <p class="scenario">A 28-year-old female presents with seasonal AR (sneezing, itching, rhinorrhea). [cite: 68]
+You prescribed an intranasal steroid (INS) last season, but she reports she "hates the feeling" and is non-compliant. [cite: 69]
+She is currently using OTC loratadine with only partial relief.</p> [cite: 70]
+                    <ul class="options-list">
+                        <li><label><input type="radio" name="patient-a" value="INS"> Re-educate on INS technique</label></li>
+                        <li><label><input type="radio" name="patient-a" value="DECON"> Add oral decongestant</label></li>
+         
+                       <li><label><input type="radio" name="patient-a" value="FDC"> Switch to FDC (Montair LC)</label></li> [cite: 71]
+                        <li><label><input type="radio" name="patient-a" value="AH"> Switch to Levocetirizine Monotherapy</label></li>
+                    </ul>
+                </div>
+
+          
+                 <div class="patient-card"> [cite: 72]
+                    <h4>Case 2: The "Sinus" Patient</h4>
+                    <p class="scenario">A 45-year-old male, non-smoker, with perennial nasal congestion and "sinus pressure." [cite: 73]
+He also mentions a "mild, dry cough" he gets at night, which he attributes to "post-nasal drip." [cite: 73]
+He has failed on levocetirizine monotherapy in the past, saying it "didn't touch the congestion."</p> [cite: 74]
+                    <ul class="options-list">
+                        <li><label><input type="radio" name="patient-b" value="INS"> Prescribe INS Monotherapy</label></li>
+                        <li><label><input type="radio" name="patient-b" value="FDC"> Prescribe FDC (Montair LC)</label></li>
+    
+                         <li><label><input type="radio" name="patient-b" value="DECON"> Add Decongestant to Antihistamine</label></li> [cite: 75]
+                        <li><label><input type="radio" name="patient-b" value="SPIRO"> Refer for Spirometry & Allergy Test</label></li>
+                    </ul>
+                </div>
+
+    
+                 <div class="patient-card"> [cite: 76]
+                    <h4>Case 3: The Partially Controlled Asthmatic</h4>
+                    <p class="scenario">A 32-year-old with known mild persistent asthma and AR. [cite: 77]
+She is *already* on a low-dose ICS (Budesonide) but still uses her SABA 3-4x/week. [cite: 77]
+She reports her AR "acts up" frequently (congestion, itching), and this often "triggers her wheezing."</p> [cite: 78]
+                    <ul class="options-list">
+                        <li><label><input type="radio" name="patient-c" value="ICS"> Double the ICS Dose</label></li>
+                        <li><label><input type="radio" name="patient-c" value="LABA"> Switch to an ICS/LABA Combo</label></li>
+  
+                         <li><label><input type="radio" name="patient-c" value="FDC"> Add FDC (Montair LC) to her regimen</label></li> [cite: 79]
+                        <li><label><input type="radio" name="patient-c" c="AH"> Add Levocetirizine Monotherapy</label></li>
+                    </ul>
+                </div>
+
+  
+             </div>
+            <button class="check-btn" onclick="checkTriage()">Check Case Decisions</button>
+            <div id="triage-rationale"></div>
+        </section>
+
+    </div>
+
+    <script>
+        function getRadioValue(name) {
+            const radio = document.querySelector(`input[name="${name}"]:checked`);
+            return radio ? radio.value : 'none'; [cite: 81]
+        }
+
+        function checkTriage() {
+            const answers = {
+                'patient-a': getRadioValue('patient-a'),
+                'patient-b': getRadioValue('patient-b'),
+                'patient-c': getRadioValue('patient-c')
+            };
+            const key = { [cite: 82]
+                'patient-a': 'FDC',
+                'patient-b': 'FDC',
+                'patient-c': 'FDC'
+            }; [cite: 82]
+            let correctCount = 0; [cite: 83]
+            if (answers['patient-a'] === key['patient-a']) correctCount++;
+            if (answers['patient-b'] === key['patient-b']) correctCount++;
+            if (answers['patient-c'] === key['patient-c']) correctCount++;
+            const rationaleDiv = document.getElementById('triage-rationale'); [cite: 84]
+            let rationaleHTML = `<h3>Triage Rationale (${correctCount}/3 Correct)</h3>`;
+            // Patient A Rationale [cite: 85]
+            rationaleHTML += `<h5>Case 1: The INS Non-Compliant Patient</h5>
+            <p><strong>Your Choice: ${answers['patient-a']} |
+            Correct: ${key['patient-a']}</strong><br> [cite: 86]
+            Rationale: While re-educating on INS is first-line, the patient is already non-compliant. [cite: 87]
+            The FDC (Montair LC) is the strongest *oral* option. Her partial relief from an antihistamine shows a histamine component, but her symptoms warrant a second mediator. [cite: 87]
+            The FDC provides comprehensive, single-pill oral compliance by blocking both histamine (Levocetirizine) and leukotrienes (Montelukast).</p>`; [cite: 88]
+            // Patient B Rationale [cite: 89]
+            rationaleHTML += `<h5>Case 2: The "Sinus" Patient</h5>
+            <p><strong>Your Choice: ${answers['patient-b']} |
+            Correct: ${key['patient-b']}</strong><br> [cite: 90]
+            Rationale: This is a classic "Unified Airway" presentation. [cite: 91]
+            His "sinus" congestion (leukotriene-driven) and "dry cough" (a sign of mild asthma) point away from simple AR. [cite: 91]
+            His failure on monotherapy confirms antihistamines alone are not enough. [cite: 92]
+            The FDC (Montair LC) is the ideal choice, as the Montelukast component targets *both* his leukotriene-driven congestion AND his underlying lower airway inflammation.</p>`; [cite: 93]
+            // Patient C Rationale [cite: 94]
+            rationaleHTML += `<h5>Case 3: The Partially Controlled Asthmatic</h5>
+            <p><strong>Your Choice: ${answers['patient-c']} |
+            Correct: ${key['patient-c']}</strong><br> [cite: 95]
+            Rationale: This patient's asthma is uncontrolled *because* her AR is uncontrolled. [cite: 96]
+            While increasing the ICS or adding a LABA are valid asthma strategies, they ignore the *trigger* (her AR). [cite: 96]
+            Adding the FDC (Montair LC) is the most logical step:
+            1. The **Levocetirizine** controls the H1-mediated AR triggers. [cite: 97, 98]
+            2. The **Montelukast** acts as a GINA-approved asthma add-on *and* controls her AR congestion. [cite: 98]
+            This strategy treats the entire "Unified Airway."</p>`; [cite: 99]
+
+            rationaleDiv.innerHTML = rationaleHTML;
+            rationaleDiv.style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>
